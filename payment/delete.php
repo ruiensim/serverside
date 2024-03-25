@@ -1,4 +1,5 @@
 <?php
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -28,6 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
 
 // Redirect back to the page where the form was submitted from
 header("Location: {$_SERVER['HTTP_REFERER']}");
+exit();
+?>
+
+require('database.php');
+$id=$_GET['id'];
+$query = "DELETE FROM product WHERE product_id=$id";
+$result = mysqli_query($con,$query) or die ( mysqli_error($con));
+header("Location: viewproduct.php");
 exit();
 ?>
 
